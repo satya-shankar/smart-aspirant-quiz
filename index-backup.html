@@ -1,0 +1,324 @@
+
+k<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Aspirant Quiz | Buddha Institute of Technology</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <div class="logo">SAQ</div>
+  <div>
+    <h1>Smart Aspirant Quiz</h1>
+    <p>Buddha Institute of Technology</p>
+  </div>
+
+  <nav>
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('register')">Register</button>
+    <button onclick="showPage('admin')">Admin</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section id="home" class="page active">
+  <div class="hero">
+    <div>
+      <span class="badge">B.Tech Practice Platform</span>
+
+      <h2>Smart Aspirant Quiz</h2>
+      <h3>Buddha Institute of Technology</h3>
+
+      <p>
+        Practice GK, GS, General Mathematics, Reasoning
+        and SSC Level English.
+      </p>
+
+      <h3>Registration Fee: ₹30</h3>
+
+      <button class="primary" onclick="showPage('register')">
+        Register Now
+      </button>
+    </div>
+
+    <div class="card">
+      <h2>Quiz Subjects</h2>
+      <p>General Knowledge (GK)</p>
+      <p>General Studies (GS)</p>
+      <p>General Mathematics</p>
+      <p>Reasoning</p>
+      <p>SSC Level English</p>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="card">
+      <h3>Offline Quiz</h3>
+      <p>The quiz will be conducted physically at the college.</p>
+    </div>
+
+    <div class="card">
+      <h3>B.Tech Students</h3>
+      <p>Students can register using their AKTU Roll Number.</p>
+    </div>
+
+    <div class="card">
+      <h3>Registration Fee</h3>
+      <p>Only ₹30 per student.</p>
+    </div>
+
+    <div class="card">
+      <h3>Payment</h3>
+      <p>Pay ₹30 through UPI and submit your UTR.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- REGISTRATION -->
+<section id="register" class="page">
+  <div class="form-container">
+
+    <h2>Student Registration</h2>
+    <p>Smart Aspirant Quiz</p>
+
+    <form id="registrationForm">
+
+      <label>Student Name</label>
+      <input
+        type="text"
+        id="studentName"
+        placeholder="Enter full name"
+        required
+      >
+
+      <label>AKTU Roll Number</label>
+      <input
+        type="text"
+        id="rollNumber"
+        placeholder="Enter AKTU Roll Number"
+        required
+      >
+
+      <label>Date of Birth</label>
+      <input
+        type="date"
+        id="dob"
+        required
+      >
+
+      <label>Mobile Number</label>
+      <input
+        type="tel"
+        id="mobile"
+        placeholder="10 digit mobile number"
+        maxlength="10"
+        required
+      >
+
+      <label>B.Tech Branch</label>
+      <select id="branch" required>
+        <option value="">Select Branch</option>
+        <option>Computer Science Engineering</option>
+        <option>Electronics & Communication Engineering</option>
+        <option>Electrical Engineering</option>
+        <option>Mechanical Engineering</option>
+        <option>Civil Engineering</option>
+        <option>Information Technology</option>
+        <option>Artificial Intelligence & ML</option>
+        <option>Artificial Intelligence & DS</option>
+        <option>Other</option>
+      </select>
+
+      <div class="fee-box">
+        Registration Fee: <strong>₹30</strong>
+      </div>
+
+      <button type="submit" class="primary">
+        Continue to Payment
+      </button>
+
+    </form>
+  </div>
+</section>
+
+
+<!-- PAYMENT -->
+<section id="payment" class="page">
+  <div class="form-container">
+
+    <h2>Payment</h2>
+
+    <div class="fee-box">
+      Registration Fee: <strong>₹30</strong>
+    </div>
+
+    <h3>Pay using UPI</h3>
+
+    <div class="qr-box">
+      <img
+  src="assets/payment-qr.jpg"
+  alt="UPI Payment QR Code"
+  class="qr-image"
+>
+    </div>
+
+    <p><strong>UPI ID:</strong> 9219592859@slc</p>
+    <p><strong>Account Holder:</strong> Anshuman Yadav</p>
+
+    <a
+      class="upi-button"
+      href="upi://pay?pa=9219592859@slc&pn=Anshuman%20Yadav&am=30&cu=INR"
+    >
+      Pay ₹30 using UPI
+    </a>
+
+    <hr>
+
+    <h3>After Payment</h3>
+
+    <p>
+      Payment करने के बाद अपना UTR / Transaction ID नीचे डालें।
+    </p>
+
+    <input
+      type="text"
+      id="utr"
+      placeholder="Enter UTR / Transaction ID"
+      required
+    >
+
+    <button class="primary" onclick="submitPayment()">
+      Submit Payment Details
+    </button>
+
+    <p id="paymentMessage"></p>
+
+  </div>
+</section>
+
+
+<!-- SUCCESS -->
+<section id="success" class="page">
+  <div class="success-box">
+
+    <h2>Registration Submitted</h2>
+
+    <p>Your registration has been received.</p>
+
+    <div class="registration-id">
+      Registration ID:
+      <strong id="registrationId"></strong>
+    </div>
+
+    <p>
+      Payment status:
+      <strong>Pending Verification</strong>
+    </p>
+
+    <p>
+      Admin will verify your UTR and confirm your registration.
+    </p>
+
+    <button class="primary" onclick="showPage('home')">
+      Back to Home
+    </button>
+
+  </div>
+</section>
+
+
+<!-- ADMIN LOGIN -->
+<section id="admin" class="page">
+  <div class="form-container">
+
+    <h2>Admin Login</h2>
+
+    <input
+      type="text"
+      id="adminUsername"
+      placeholder="Username"
+    >
+
+    <input
+      type="password"
+      id="adminPassword"
+      placeholder="Password"
+    >
+
+    <button class="primary" onclick="adminLogin()">
+      Login
+    </button>
+
+    <p id="loginMessage"></p>
+
+  </div>
+</section>
+
+
+<!-- ADMIN DASHBOARD -->
+<section id="dashboard" class="page">
+
+  <div class="dashboard-header">
+    <h2>Admin Dashboard</h2>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <div class="stats">
+    <div class="card">
+      <h3>Total Registrations</h3>
+      <p id="totalStudents">0</p>
+    </div>
+
+    <div class="card">
+      <h3>Pending Payments</h3>
+      <p id="pendingPayments">0</p>
+    </div>
+
+    <div class="card">
+      <h3>Verified Payments</h3>
+      <p id="verifiedPayments">0</p>
+    </div>
+  </div>
+
+  <div class="table-container">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Registration ID</th>
+          <th>Name</th>
+          <th>Roll No.</th>
+          <th>Branch</th>
+          <th>Mobile</th>
+          <th>UTR</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody id="studentTable">
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 Smart Aspirant Quiz | Buddha Institute of Technology</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
